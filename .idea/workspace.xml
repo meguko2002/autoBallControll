@@ -108,8 +108,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="6" />
+    <option name="x" value="411" />
+    <option name="y" value="14" />
     <option name="width" value="953" />
     <option name="height" value="999" />
   </component>
@@ -139,7 +139,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.webcam (1)">
+  <component name="RunManager" selected="Python.pythonToArduino">
     <configuration name="gradation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="autoBallControll" />
       <option name="INTERPRETER_OPTIONS" value="" />
