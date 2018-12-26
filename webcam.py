@@ -1,5 +1,9 @@
 import cv2
 import numpy as np
+import serial
+
+ser = serial.Serial("/dev/cu.usbmodem1421", 115200, timeout=None)  # COMポート(Arduino接続)
+
 
 def color_pick(hue, image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -58,14 +62,13 @@ while (True):
     cv2.putText(frame, 'count =' + str(len(contours)), (0,20), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 1,
                 cv2.LINE_AA)
     if len(contours) > 0:
-        # for i in range(len(contours)):
-        for i in range(1):
-            cv2.drawContours(frame, [contours[i]], 0, (0, 255, 0), 3)
-            cx, cy = detect_center_of_gravity(contours[i])
-            cv2.putText(frame, " (" + str(cx) + "," + str(cy) + ")", (cx, cy), cv2.FONT_HERSHEY_SIMPLEX, 0.8,
-                        (0, 0, 0), 1, cv2.LINE_AA)
-            cv2.circle(frame, (cx, cy), 5, (0, 0, 0), -1)
+        cv2.drawContours(frame, [contours[0]], 0, (0, 255, 0), 3)
+        cx, cy = detect_center_of_gravity(contours[0])
+        cv2.putText(frame, " (" + str(cx) + "," + str(cy) + ")", (cx, cy), cv2.FONT_HERSHEY_SIMPLEX, 0.8,
+                    (0, 0, 0), 1, cv2.LINE_AA)
+        cv2.circle(frame, (cx, cy), 5, (0, 0, 0), -1)
     cv2.imshow('image', frame)
+    ser.write(cx.encode('utf-8'))
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 cap.release()
