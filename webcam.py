@@ -41,7 +41,8 @@ cv2.namedWindow('image', cv2.WINDOW_NORMAL)
 # Create trackbars for color change
 cv2.createTrackbar('Hue', 'image', 0, 180, nothing)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
+print(cap.isOpened())
 kernel = np.ones((5, 5), np.uint8)
 while True:
     timeave = 0
@@ -51,7 +52,7 @@ while True:
             break
         hue = cv2.getTrackbarPos('Hue', 'image')
         # Capture frame-by-
-        e1 = cv2.getTickCount()
+        # e1 = cv2.getTickCount()
 
         # 通しで100msec
         ret, frame = cap.read()  # 15msec
@@ -71,14 +72,14 @@ while True:
             cv2.circle(frame, (cx, cy), 5, (0, 0, 0), -1)
             x = cx
         # cv2.imshow('image', frame)  # 65msec
-        e2 = cv2.getTickCount()
+        # e2 = cv2.getTickCount()
         # pa.sendtoArd(x)
-        # print(x)
+        print(x)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-        time = (e2 - e1) / cv2.getTickFrequency()
-        timeave = (timeave * i + time) / (i + 1)
-    print(timeave)
+        # time = (e2 - e1) / cv2.getTickFrequency()
+        # timeave = (timeave * i + time) / (i + 1)
+    # print(timeave)
 cap.release()
 cv2.destroyAllWindows()
