@@ -9,7 +9,7 @@ import urllib.request
 # 設定
 color = 1 # 検出する色を指定（1=青,2=緑,3=赤,0=黒）
 # カメラ番号を指定
-cam_id = 1
+cam_id = 0
 # IP WebcamのURLを指定
 webcam = False
 url='http://192.168.43.146:8080/shot.jpg'
@@ -164,9 +164,9 @@ def capture_thread():
             mask, cx, cy = color_pick(dst, color)
             g_dst = dst
             g_mask = mask
-            if cx is not None and cy is not None:
-                # mqttで座標を送信
-                client.publish('enemy', '%d:%d' % (cx,cy))
+            # if cx is not None and cy is not None:
+            #     # mqttで座標を送信
+            #     client.publish('enemy', '%d:%d' % (cx,cy))
         # FPSを計算する
         current_t = time.perf_counter()
         cnt += 1
