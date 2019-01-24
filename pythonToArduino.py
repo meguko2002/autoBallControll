@@ -1,7 +1,10 @@
 import time
 import serial
 
-ser = serial.Serial('/dev/cu.usbmodem1421', 9600, timeout=0.1)
+try:
+    ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=0.1)
+except:
+    print('no arduino !')
 
 def sendtoArd(val):
     head = 128
