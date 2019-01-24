@@ -4,6 +4,7 @@ import threading
 import time
 import urllib
 import urllib.request
+import pythonToArduino as p2a
 # import paho.mqtt.client as mqtt
 
 # 設定
@@ -162,6 +163,8 @@ def capture_thread():
         if dst is not None:
             # 迷路の中から指定色の物体を検出する
             mask, cx, cy = color_pick(dst, color)
+            print(cx)
+            # p2a.sendtoArd(cx)
             g_dst = dst
             g_mask = mask
             # if cx is not None and cy is not None:
@@ -175,7 +178,7 @@ def capture_thread():
             base_t = current_t
             fps = cnt / dt
             cnt = 0
-            print('fps = %.2f' % fps)
+            # print('fps = %.2f' % fps)
         # FPS調整用のSleep時間を計算
         # current_t = time.perf_counter()
         # dt = 0.095 - (current_t - prev_t)

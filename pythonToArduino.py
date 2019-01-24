@@ -3,8 +3,10 @@ import serial
 
 try:
     ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=0.1)
-except:
+except :
     print('no arduino !')
+# ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=0.1)
+
 
 def sendtoArd(val):
     head = 128
