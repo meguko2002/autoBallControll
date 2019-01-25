@@ -3,10 +3,9 @@ import serial
 
 try:
     ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=0.1)
-except :
-    print('no arduino !')
-# ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=0.1)
-
+except OSError as e:
+    print(str(e))
+    print('arduino が刺さってない!')
 
 def sendtoArd(val):
     head = 128
@@ -27,4 +26,7 @@ def main():
 
 
 if __name__ == '__main__':
-   main()
+   try:
+       main()
+   except Exception as err:
+       pass
